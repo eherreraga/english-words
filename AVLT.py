@@ -1,3 +1,7 @@
+'''
+AVL Tree from ZyBooks that I am going to use for CS Lab.
+'''
+
 class AVLT:
     # Constructor to create an empty AVLTree. There is only
     # one data member, the tree's root Node, and it starts
