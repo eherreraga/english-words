@@ -1,5 +1,5 @@
-import AVLT
-import Node
+from AVLT import AVLT
+from Node import Node
 
 def pop_tree(txt_file, tree):
     file = open(txt_file, "r")
