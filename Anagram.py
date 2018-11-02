@@ -1,7 +1,6 @@
 import AVLT
 import Node
 
-
 def pop_tree(txt_file, tree):
     file = open(txt_file, "r")
     for line in file:
