@@ -1,7 +1,7 @@
 from AVLT import AVLT
 from AVLT import Node
 from RBT import RedBlackTree
-from RBT import RBTNode
+
 
 #Going to read and insert the words into the tree
 def pop_tree(txt_file, tree):
@@ -12,7 +12,7 @@ def pop_tree(txt_file, tree):
         if isinstance(tree, AVLT):
                 tree.insert(Node(l[0]))
         else:
-                tree.insert(RBTNode(l[0]))
+                tree.insert(l[0])
 
 #Going to print the anagrams of the words and the count of the those anagram words
 def anagram(tree, word, prefix = "", p = True):
@@ -52,13 +52,13 @@ def greatest_anagram(file):
         print(word,max)
 
 global tree
-# i = input("0)AVLT\n1)RBT\n")
-# if i is "0":
-#         print("Populating AVL tree...")
-#         tree = AVLT()
-# else:
-print("Populating RB tree...")
-tree = RedBlackTree()
+i = input("0)AVLT\n1)RBT\n")
+if i is "0":
+        print("Populating AVL tree...")
+        tree = AVLT()
+else:
+        print("Populating RB tree...")
+        tree = RedBlackTree()
 pop_tree("words.txt", tree)
 anagram(tree, "money")
 print("Finding the word with the greatest number of anagrams")
