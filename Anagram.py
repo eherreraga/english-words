@@ -8,7 +8,6 @@ def pop_tree(txt_file, tree):
     file = open(txt_file, "r")
     for line in file:
         l = line.split("\n")
-        #TODO red black and avl tree
         if isinstance(tree, AVLT):
                 tree.insert(Node(l[0]))
         else:
