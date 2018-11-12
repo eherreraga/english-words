@@ -15,9 +15,9 @@ class HT():
     #Its going to separate the word into characters and get the number that
     #its represents, then by using folding method we are going to
     #get a number that we are going to get the module by the table size
-    def get_position(self, HTNode):
+    def get_position(self, word):
         n = 0
-        l = list(HTNode.item)
+        l = list(word)
         for c in l:
             n += ord(c)
         return n % self.tableSize
@@ -31,6 +31,10 @@ class HT():
             e.next = n
         self.l[pos] = e
         self.numItems += 1
+
+    def search(self, word):
+
+        pass
 
 class HTNode():
     word = ""
