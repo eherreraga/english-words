@@ -4,7 +4,7 @@ class HT():
     numItems = 0
     
     def __init__(self, size):
-        self.l[None] * size
+        self.l = [None] * size
         self.tableSize = size
     
     #The load factor is going to be the numberOfItems
@@ -30,6 +30,7 @@ class HT():
         if n is not None:
             e.next = n
         self.l[pos] = e
+        self.numItems += 1
 
 class HTNode():
     word = ""

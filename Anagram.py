@@ -1,6 +1,7 @@
 from AVLT import AVLT
 from AVLT import Node
 from RBT import RedBlackTree
+from HashTable import HT
 
 
 #Going to read and insert the words into the tree
