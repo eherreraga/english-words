@@ -5,26 +5,24 @@ from HashTable import HT
 
 
 #Going to read and insert the words into the tree
-def pop_tree(txt_file, tree):
+def pop_tree(txt_file, ht):
     file = open(txt_file, "r")
     for line in file:
         l = line.split("\n")
-        if isinstance(tree, AVLT):
-                tree.insert(Node(l[0]))
-        else:
-                tree.insert(l[0])
+        ht.insert(l[0])
+        
 
 #Going to print the anagrams of the words and the count of the those anagram words
-def anagram(tree, word, prefix = "", p = True):
+def anagram(ht, word, prefix = "", p = True):
         words = []
         def print_anagram(word, prefix):
                 if len(word) <= 1:
                         str = prefix + word
-                        n = tree.search(str)
+                        n = ht.search(str)
                         if n is not None:
                                 if p:
-                                        print(n.key)
-                                words.append(n.key)
+                                        print(n.word)
+                                words.append(n.word)
                 else:
                         for i in range(len(word)):
                                 cur = word [i: i + 1]
@@ -44,23 +42,24 @@ def greatest_anagram(file):
         word = ""
         for line in file:
                 l = line.split("\n")
-                n = anagram(tree, l[0], "", False)
+                n = anagram(ht, l[0], "", False)
                 if max < len(n):
                         max = len(n)
                         word = n[0]
         #Going to print the word with the most angrams along with the numeber of angrams
         print(word,max)
 
-global tree
-i = input("0)AVLT\n1)RBT\n")
-if i is "0":
-        print("Populating AVL tree...")
-        tree = AVLT()
-else:
-        print("Populating RB tree...")
-        tree = RedBlackTree()
-pop_tree("words.txt", tree)
-anagram(tree, "money")
-print("Finding the word with the greatest number of anagrams")
+global ht
+print("Hashtable implementation....")
+ht = HT(600000)
+
+pop_tree("words.txt", ht)
+print("Loadfactor:", ht.getLoadFactor())
+
+w = "money"
+print("Finding the anagrams for: %s..."%(w))
+anagram(ht, w)
+
+print("Finding the word with the greatest number of anagrams...")
 greatest_anagram("words_example.txt")
 

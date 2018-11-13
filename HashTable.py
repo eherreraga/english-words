@@ -1,3 +1,4 @@
+from __future__ import division
 class HT():
     l = []
     tableSize = -1
@@ -16,29 +17,55 @@ class HT():
     #its represents, then by using folding method we are going to
     #get a number that we are going to get the module by the table size
     def get_position(self, word):
+        return self.hashing2(word)
+
+    #Inserting the word into the hashtable
+    def insert(self, word):
+        e = HTNode(word)
+        pos = self.get_position(e.word)
+        n = self.l[pos]
+        if n is not None:
+            e.next = n
+            e.size = n.size
+        self.l[pos] = e
+        e.size += 1
+        self.numItems += 1
+
+    #We are going to search for the word in the hashtable
+    def search(self, word):
+        pos = self.get_position(word)
+        n = self.l[pos]
+        while n is not None:
+            if n.word == word:
+                 return n
+            n = n.next
+        return n
+
+    def hashing0(self, word):
         n = 0
         l = list(word)
         for c in l:
             n += ord(c)
         return n % self.tableSize
+    
+    def hashing1(self, word):
+        return len(word) % self.tableSize
 
-    #Inserting the word into the hashtable
-    def insert(self, word):
-        e = HTNode(word)
-        pos = self.get_position(e)
-        n = self.l[pos]
-        if n is not None:
-            e.next = n
-        self.l[pos] = e
-        self.numItems += 1
+    def hashing2(self, word):
+        n = 0
+        l = list(word)
+        count = 1
+        for c in l:
+            n += (ord(c)*(count^5))
+            count += 1
+        return n % self.tableSize
 
-    def search(self, word):
-
-        pass
+        
 
 class HTNode():
     word = ""
     next = ""
+    size = 0
     def __init__(self, word, next = None):
         self.word = word
         self.next = next
