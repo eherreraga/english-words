@@ -17,7 +17,7 @@ class HT():
     #its represents, then by using folding method we are going to
     #get a number that we are going to get the module by the table size
     def get_position(self, word):
-        return self.hashing2(word)
+        return self.hashing1(word)
 
     #Inserting the word into the hashtable
     def insert(self, word):
@@ -35,11 +35,13 @@ class HT():
     def search(self, word):
         pos = self.get_position(word)
         n = self.l[pos]
+        c = 0 #This is going to represent the comparisons that it took to find the word
         while n is not None:
             if n.word == word:
-                 return n
+                 return n,c
             n = n.next
-        return n
+            c += 1
+        return n,c
 
     def hashing0(self, word):
         n = 0
@@ -56,7 +58,7 @@ class HT():
         l = list(word)
         count = 1
         for c in l:
-            n += (ord(c)*(count^5))
+            n += (ord(c)*(count^len(word)*2)+len(word)*20)
             count += 1
         return n % self.tableSize
 

@@ -18,10 +18,10 @@ def anagram(ht, word, prefix = "", p = True):
         def print_anagram(word, prefix):
                 if len(word) <= 1:
                         str = prefix + word
-                        n = ht.search(str)
+                        n,c = ht.search(str)
                         if n is not None:
                                 if p:
-                                        print(n.word)
+                                        print("For %s it took %d comparisons"%(n.word, c))
                                 words.append(n.word)
                 else:
                         for i in range(len(word)):
@@ -51,12 +51,12 @@ def greatest_anagram(file):
 
 global ht
 print("Hashtable implementation....")
-ht = HT(600000)
+ht = HT(800000)
 
 pop_tree("words.txt", ht)
 print("Loadfactor:", ht.getLoadFactor())
 
-w = "money"
+w = "water"
 print("Finding the anagrams for: %s..."%(w))
 anagram(ht, w)
 
