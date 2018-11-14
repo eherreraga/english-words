@@ -43,7 +43,7 @@ def greatest_anagram(file):
         word = ""
         for line in file:
                 l = line.split("\n")
-                n = anagram(tree, l[0], "", False)
+                n = anagram(tree, l[0], "", True)
                 if max < len(n):
                         max = len(n)
                         word = n[0]
@@ -59,7 +59,7 @@ else:
         print("Populating RB tree...")
         tree = RedBlackTree()
 pop_tree("words.txt", tree)
-anagram(tree, "money")
+anagram(tree, "sit")
 print("Finding the word with the greatest number of anagrams")
 greatest_anagram("words_example.txt")
 
